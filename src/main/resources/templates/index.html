@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" content="text/html" http-equiv="content-type" >
     <title>文超打造</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
@@ -26,11 +26,11 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/login/oauth/authorize?client_id=ab22560e7a9e4051c408&redirect_uri=http://localhost:8090/callback&scope=user&state=1">登录</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">我 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <li  th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=ab22560e7a9e4051c408&redirect_uri=http://localhost:8090/callback&scope=user&state=1">登录</a></li>
+                <li class="dropdown" th:if="${session.user!=null}">
+                    <a href="#" class="dropdown-toggle" id="down" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="true" th:text="${session.user.getName()}">111<span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="down">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
                         <li><a href="#">退出登录</a></li>
@@ -39,6 +39,7 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+
 </nav>
 </body>
 </html>
